@@ -5,7 +5,7 @@ compatibility_date = "2026-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "monastery360"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "58fde445-8ebf-4445-a897-b710ba8e439e"
 
 [[r2_buckets]]
 binding = "MEDIA"

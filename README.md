@@ -1,8 +1,8 @@
 # Monastery360
 
-A digital heritage platform for the monasteries of Sikkim: 360° virtual tours,
-an interactive heritage-circuit map, a searchable archive of manuscripts and
-murals, multilingual smart audio guides, and a living cultural calendar.
+A digital heritage platform for the monasteries of Sikkim — built by [Neel Pandey (N-PCs)](https://github.com/N-PCs).
+
+Features 360° virtual tours, an interactive heritage-circuit map, a searchable archive of manuscripts and murals, multilingual smart audio guides, and a living cultural calendar.
 
 ```
 frontend  React 19 + TanStack Start + Tailwind      → Vercel

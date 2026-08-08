@@ -1,0 +1,21 @@
+name = "monastery360-api"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "monastery360"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "monastery360-media"
+
+[ai]
+binding = "AI"
+
+[vars]
+# Public base URL of the R2 bucket (r2.dev or a custom domain).
+MEDIA_BASE_URL = "https://media.example.com"
+# Comma-separated list of origins allowed to call this API.
+ALLOWED_ORIGINS = "http://localhost:8080,https://monastery360.vercel.app"

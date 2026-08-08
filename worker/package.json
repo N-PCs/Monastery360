@@ -1,0 +1,16 @@
+{
+  "name": "monastery360-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "schema:remote": "wrangler d1 execute monastery360 --file=./schema.sql --remote",
+    "schema:local": "wrangler d1 execute monastery360 --file=./schema.sql --local"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.99.0"
+  }
+}

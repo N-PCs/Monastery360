@@ -22,15 +22,27 @@ export interface Env {
 /* ------------------------------------------------------------------ utils */
 
 function cors(env: Env, origin: string | null): Record<string, string> {
-  const allowed = env.ALLOWED_ORIGINS.split(",").map((o) => o.trim());
-  const allow = origin && allowed.includes(origin) ? origin : allowed[0] ?? "*";
-  return {
-    "Access-Control-Allow-Origin": allow,
+  const allowed = env.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean);
+  const allow = origin && allowed.includes(origin)
+    ? origin
+    : allowed.includes("*")
+    ? "*"
+    : allowed.length === 0
+    ? "*"
+    : undefined;
+
+  const headers: Record<string, string> = {
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
     Vary: "Origin",
   };
+
+  if (allow) {
+    headers["Access-Control-Allow-Origin"] = allow;
+  }
+
+  return headers;
 }
 
 function json(data: unknown, headers: Record<string, string>, status = 200): Response {

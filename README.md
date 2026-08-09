@@ -4,6 +4,7 @@ A digital heritage platform for the monasteries of Sikkim — built by [Neel Pan
 
 Features 360° virtual tours, an interactive heritage-circuit map, a searchable archive of manuscripts and murals, multilingual smart audio guides, and a living cultural calendar.
 
+Go and explore Sikkim in its full serenity!!
 ```
 frontend  React 19 + TanStack Start + Tailwind      → Vercel
 backend   Cloudflare Worker + D1 + R2 + Workers AI  → Cloudflare (see worker/)

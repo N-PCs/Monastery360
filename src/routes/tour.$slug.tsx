@@ -3,7 +3,7 @@ import { lazy, Suspense, useState } from "react";
 import { X } from "lucide-react";
 import { getMonastery } from "@/data/monasteries";
 
-const PanoramaViewer = lazy(() => import("@/components/PanoramaViewer"));
+const ResponsivePanorama = lazy(() => import("@/components/ResponsivePanorama"));
 
 export const Route = createFileRoute("/tour/$slug")({
   loader: ({ params }) => {
@@ -59,8 +59,10 @@ function TourPage() {
       <div className="relative flex-1">
         <ClientOnly fallback={<div className="grid size-full place-items-center text-sm text-white/60">Preparing 360° view…</div>}>
           <Suspense fallback={<div className="grid size-full place-items-center text-sm text-white/60">Loading…</div>}>
-            <PanoramaViewer
+            <ResponsivePanorama
               className="size-full"
+              slug={monastery.slug}
+              monasteryName={monastery.name}
               scenes={monastery.scenes}
               activeSceneId={activeScene?.id ?? ""}
               onSceneChange={setSceneId}

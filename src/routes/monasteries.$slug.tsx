@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getMonastery } from "@/data/monasteries";
 import { fetchMonastery } from "@/lib/api";
 
-const PanoramaViewer = lazy(() => import("@/components/PanoramaViewer"));
+const ResponsivePanorama = lazy(() => import("@/components/ResponsivePanorama"));
 
 export const Route = createFileRoute("/monasteries/$slug")({
   loader: ({ params }) => {
@@ -91,8 +91,10 @@ function MonasteryDetail() {
                 <Suspense
                   fallback={<div className="grid size-full place-items-center bg-muted text-sm text-muted-foreground">Loading…</div>}
                 >
-                  <PanoramaViewer
+                  <ResponsivePanorama
                     className="size-full"
+                    slug={monastery.slug}
+                    monasteryName={monastery.name}
                     scenes={monastery.scenes}
                     activeSceneId={activeScene?.id ?? ""}
                     onSceneChange={setSceneId}

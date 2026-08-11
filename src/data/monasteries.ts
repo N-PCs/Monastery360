@@ -1,7 +1,6 @@
 import panoRumtek from "@/assets/pano-rumtek.jpg";
 import panoPemayangtse from "@/assets/pano-pemayangtse.jpg";
 import panoTashiding from "@/assets/pano-tashiding.jpg";
-import heroMonastery from "@/assets/hero-monastery.jpg";
 
 export type District = "East Sikkim" | "West Sikkim" | "North Sikkim" | "South Sikkim";
 export type Sect = "Karma Kagyu" | "Nyingma" | "Kagyu" | "Gelug";
@@ -47,7 +46,7 @@ export const monasteries: Monastery[] = [
     altitude: 1550,
     lat: 27.2885,
     lng: 88.5615,
-    cover: heroMonastery,
+    cover: "/rumtek.jpeg",
     summary:
       "The largest monastery in Sikkim and seat-in-exile of the Karmapa, celebrated for its golden stupa and its ritual dance courtyard.",
     history:
@@ -91,7 +90,7 @@ export const monasteries: Monastery[] = [
     altitude: 2085,
     lat: 27.3046,
     lng: 88.2513,
-    cover: panoPemayangtse,
+    cover: "/pemayangtse.jpeg",
     summary:
       "One of the oldest and most premier Nyingma monasteries in Sikkim, home to the seven-tiered wooden sculpture Zangdok Palri.",
     history:
@@ -124,7 +123,7 @@ export const monasteries: Monastery[] = [
     altitude: 1465,
     lat: 27.3094,
     lng: 88.2969,
-    cover: panoTashiding,
+    cover: "/tashiding.jpeg",
     summary:
       "Built on a heart-shaped hill between the Rathong and Rangeet rivers, considered the most sacred site in Sikkim.",
     history:
@@ -157,7 +156,7 @@ export const monasteries: Monastery[] = [
     altitude: 1840,
     lat: 27.3389,
     lng: 88.6197,
-    cover: panoRumtek,
+    cover: "/enchey.jpeg",
     summary:
       "A two-hundred-year-old hermitage above Gangtok, believed to be protected by the deities Khangchendzonga and Yabdean.",
     history:
@@ -190,7 +189,7 @@ export const monasteries: Monastery[] = [
     altitude: 2100,
     lat: 27.3736,
     lng: 88.2261,
-    cover: panoTashiding,
+    cover: "/dubdi.jpeg",
     summary:
       "The oldest monastery in Sikkim, raised above Yuksom shortly after the coronation of the first Chogyal.",
     history:
@@ -223,7 +222,7 @@ export const monasteries: Monastery[] = [
     altitude: 1370,
     lat: 27.4139,
     lng: 88.5836,
-    cover: panoRumtek,
+    cover: "/phodong.jpeg",
     summary:
       "One of the six most important monasteries in Sikkim, known for its restored eighteenth-century murals.",
     history:

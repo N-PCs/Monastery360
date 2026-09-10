@@ -69,8 +69,8 @@ function MonasteriesPage() {
       <p className="text-eyebrow text-muted-foreground">Directory</p>
       <h1 className="mt-3 font-display text-4xl">Monasteries of Sikkim</h1>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        Each entry carries a documented history, architectural notes, conservation status and
-        an immersive tour. Filter by district, lineage or century.
+        Each entry carries a documented history, architectural notes, conservation status and an
+        immersive tour. Filter by district, lineage or century.
       </p>
 
       <div className="mt-8 space-y-4">
@@ -81,11 +81,22 @@ function MonasteriesPage() {
           className="max-w-md"
         />
         <div className="flex flex-wrap gap-2">
-          <Chip active={!district && !sect && !era} onClick={() => { setDistrict(""); setSect(""); setEra(""); }}>
+          <Chip
+            active={!district && !sect && !era}
+            onClick={() => {
+              setDistrict("");
+              setSect("");
+              setEra("");
+            }}
+          >
             All
           </Chip>
           {districts.map((d) => (
-            <Chip key={d} active={district === d} onClick={() => setDistrict(district === d ? "" : d)}>
+            <Chip
+              key={d}
+              active={district === d}
+              onClick={() => setDistrict(district === d ? "" : d)}
+            >
               {d}
             </Chip>
           ))}

@@ -160,12 +160,7 @@
 }
 
 @utility rule-gold {
-  background-image: linear-gradient(
-    to right,
-    transparent,
-    var(--color-gold),
-    transparent
-  );
+  background-image: linear-gradient(to right, transparent, var(--color-gold), transparent);
   height: 1px;
 }
 

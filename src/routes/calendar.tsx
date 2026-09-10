@@ -30,9 +30,15 @@ export const Route = createFileRoute("/calendar")({
 
 function formatDate(date: string, endDate?: string) {
   const opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "long", year: "numeric" };
-  const start = new Date(`${date}T00:00:00Z`).toLocaleDateString("en-IN", { ...opts, timeZone: "UTC" });
+  const start = new Date(`${date}T00:00:00Z`).toLocaleDateString("en-IN", {
+    ...opts,
+    timeZone: "UTC",
+  });
   if (!endDate) return start;
-  const end = new Date(`${endDate}T00:00:00Z`).toLocaleDateString("en-IN", { ...opts, timeZone: "UTC" });
+  const end = new Date(`${endDate}T00:00:00Z`).toLocaleDateString("en-IN", {
+    ...opts,
+    timeZone: "UTC",
+  });
   return `${start} – ${end}`;
 }
 
@@ -56,9 +62,9 @@ function CalendarPage() {
       <p className="text-eyebrow text-muted-foreground">Living heritage</p>
       <h1 className="mt-3 font-display text-4xl">Cultural calendar</h1>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        The monastic year is measured in ritual. Festivals move with the Tibetan lunar calendar,
-        so dates shift each year — register interest and the monastery office confirms the exact
-        timing closer to the day.
+        The monastic year is measured in ritual. Festivals move with the Tibetan lunar calendar, so
+        dates shift each year — register interest and the monastery office confirms the exact timing
+        closer to the day.
       </p>
 
       <ol className="mt-10 space-y-4">

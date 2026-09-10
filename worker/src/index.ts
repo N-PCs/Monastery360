@@ -22,14 +22,17 @@ export interface Env {
 /* ------------------------------------------------------------------ utils */
 
 function cors(env: Env, origin: string | null): Record<string, string> {
-  const allowed = env.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean);
-  const allow = origin && allowed.includes(origin)
-    ? origin
-    : allowed.includes("*")
-    ? "*"
-    : allowed.length === 0
-    ? "*"
-    : undefined;
+  const allowed = env.ALLOWED_ORIGINS.split(",")
+    .map((o) => o.trim())
+    .filter(Boolean);
+  const allow =
+    origin && allowed.includes(origin)
+      ? origin
+      : allowed.includes("*")
+        ? "*"
+        : allowed.length === 0
+          ? "*"
+          : undefined;
 
   const headers: Record<string, string> = {
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
@@ -236,15 +239,18 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
     }
     const q = url.searchParams.get("q");
     if (q) {
-      where.push(
-        "(lower(name) LIKE ? OR lower(local_name) LIKE ? OR lower(summary) LIKE ?)",
-      );
+      where.push("(lower(name) LIKE ? OR lower(local_name) LIKE ? OR lower(summary) LIKE ?)");
       const like = `%${q.toLowerCase()}%`;
       binds.push(like, like, like);
     }
     const sql = `SELECT * FROM monasteries ${where.length ? `WHERE ${where.join(" AND ")}` : ""} ORDER BY name`;
-    const { results } = await env.DB.prepare(sql).bind(...binds).all<MonasteryRow>();
-    return json(results.map((r) => toMonastery(env, r)), h);
+    const { results } = await env.DB.prepare(sql)
+      .bind(...binds)
+      .all<MonasteryRow>();
+    return json(
+      results.map((r) => toMonastery(env, r)),
+      h,
+    );
   }
 
   const detail = /^\/api\/monasteries\/([a-z0-9-]+)$/.exec(path);
@@ -256,9 +262,7 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
     if (!row) return json({ error: "Not found" }, h, 404);
 
     const [{ results: scenes }, { results: hotspots }] = await Promise.all([
-      env.DB.prepare(
-        "SELECT * FROM tour_scenes WHERE monastery_slug = ? ORDER BY sort_order",
-      )
+      env.DB.prepare("SELECT * FROM tour_scenes WHERE monastery_slug = ? ORDER BY sort_order")
         .bind(slug)
         .all<SceneRow>(),
       env.DB.prepare(
@@ -309,7 +313,11 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
       .bind(...(kind ? [kind] : []))
       .all<ArchiveRow>();
 
-    if (!q) return json(results.map((r) => toArchive(env, r)), h);
+    if (!q)
+      return json(
+        results.map((r) => toArchive(env, r)),
+        h,
+      );
 
     const queryVector = await embed(env, q);
     if (queryVector) {
@@ -345,9 +353,7 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
   if (path === "/api/events" && request.method === "GET") {
     const month = url.searchParams.get("month");
     const { results } = month
-      ? await env.DB.prepare(
-          "SELECT * FROM events WHERE start_date LIKE ? ORDER BY start_date",
-        )
+      ? await env.DB.prepare("SELECT * FROM events WHERE start_date LIKE ? ORDER BY start_date")
           .bind(`${month}%`)
           .all<EventRow>()
       : await env.DB.prepare("SELECT * FROM events ORDER BY start_date").all<EventRow>();
@@ -356,9 +362,13 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
 
   /* Bookings ------------------------------------------------------------- */
   if (path === "/api/bookings" && request.method === "POST") {
-    const body = (await request.json().catch(() => null)) as
-      | { eventId?: string; name?: string; email?: string; people?: number; note?: string }
-      | null;
+    const body = (await request.json().catch(() => null)) as {
+      eventId?: string;
+      name?: string;
+      email?: string;
+      people?: number;
+      note?: string;
+    } | null;
     const eventId = body?.eventId?.trim();
     const name = body?.name?.trim();
     const email = body?.email?.trim();
@@ -376,25 +386,33 @@ async function handle(request: Request, env: Env, h: Record<string, string>): Pr
     ) {
       return json({ error: "Invalid booking payload" }, h, 400);
     }
-    const exists = await env.DB.prepare("SELECT id FROM events WHERE id = ?")
-      .bind(eventId)
-      .first();
+    const exists = await env.DB.prepare("SELECT id FROM events WHERE id = ?").bind(eventId).first();
     if (!exists) return json({ error: "Unknown event" }, h, 404);
 
     const id = crypto.randomUUID();
     await env.DB.prepare(
       "INSERT INTO bookings (id, event_id, name, email, people, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
     )
-      .bind(id, eventId, name, email, people, (body?.note ?? "").slice(0, 500), new Date().toISOString())
+      .bind(
+        id,
+        eventId,
+        name,
+        email,
+        people,
+        (body?.note ?? "").slice(0, 500),
+        new Date().toISOString(),
+      )
       .run();
     return json({ ok: true, id }, h);
   }
 
   /* Text to speech — generated once, then served from R2 ------------------ */
   if (path === "/api/tts" && request.method === "POST") {
-    const body = (await request.json().catch(() => null)) as
-      | { text?: string; language?: string; cacheKey?: string }
-      | null;
+    const body = (await request.json().catch(() => null)) as {
+      text?: string;
+      language?: string;
+      cacheKey?: string;
+    } | null;
     const text = body?.text?.slice(0, 1200);
     const language = (body?.language ?? "en").replace(/[^a-z]/g, "");
     const cacheKey = body?.cacheKey?.replace(/[^a-zA-Z0-9-_]/g, "");

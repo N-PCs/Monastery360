@@ -36,16 +36,24 @@ function MapPage() {
       <p className="text-eyebrow text-muted-foreground">Geospatial</p>
       <h1 className="mt-3 font-display text-4xl">The heritage circuit</h1>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        Every monastery is geo-tagged with altitude and lineage. The dashed line traces a
-        suggested circuit linking the sites; tap any marker to open its record.
+        Every monastery is geo-tagged with altitude and lineage. The dashed line traces a suggested
+        circuit linking the sites; tap any marker to open its record.
       </p>
 
       <div className="mt-8 overflow-hidden rounded-lg border border-border">
         <ClientOnly
-          fallback={<div className="grid h-[560px] place-items-center bg-muted text-sm text-muted-foreground">Loading map…</div>}
+          fallback={
+            <div className="grid h-[560px] place-items-center bg-muted text-sm text-muted-foreground">
+              Loading map…
+            </div>
+          }
         >
           <Suspense
-            fallback={<div className="grid h-[560px] place-items-center bg-muted text-sm text-muted-foreground">Loading map…</div>}
+            fallback={
+              <div className="grid h-[560px] place-items-center bg-muted text-sm text-muted-foreground">
+                Loading map…
+              </div>
+            }
           >
             <MonasteryMap
               className="h-[560px] w-full"

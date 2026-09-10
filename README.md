@@ -5,6 +5,7 @@ A digital heritage platform for the monasteries of Sikkim — built by [Neel Pan
 Features 360° virtual tours, an interactive heritage-circuit map, a searchable archive of manuscripts and murals, multilingual smart audio guides, and a living cultural calendar.
 
 Go and explore Sikkim in its full serenity!!
+
 ```
 frontend  React 19 + TanStack Start + Tailwind      → Vercel
 backend   Cloudflare Worker + D1 + R2 + Workers AI  → Cloudflare (see worker/)
@@ -41,14 +42,14 @@ the embedding reindex step.
 
 ## Feature map
 
-| Area | Where |
-| --- | --- |
-| 360° tour viewer (Pannellum) | `src/components/PanoramaViewer.tsx`, `/tour/$slug` |
-| Interactive map (MapLibre + OSM) | `src/components/MonasteryMap.tsx`, `/map` |
-| Smart audio guide, 5 languages | `src/components/AudioGuide.tsx` |
-| Archive search | `/archives` → Worker `/api/archives` (vector search) |
-| Cultural calendar and bookings | `/calendar` → Worker `/api/events`, `/api/bookings` |
-| Sample data / API switch | `src/data/*`, `src/lib/api.ts` |
+| Area                             | Where                                                |
+| -------------------------------- | ---------------------------------------------------- |
+| 360° tour viewer (Pannellum)     | `src/components/PanoramaViewer.tsx`, `/tour/$slug`   |
+| Interactive map (MapLibre + OSM) | `src/components/MonasteryMap.tsx`, `/map`            |
+| Smart audio guide, 5 languages   | `src/components/AudioGuide.tsx`                      |
+| Archive search                   | `/archives` → Worker `/api/archives` (vector search) |
+| Cultural calendar and bookings   | `/calendar` → Worker `/api/events`, `/api/bookings`  |
+| Sample data / API switch         | `src/data/*`, `src/lib/api.ts`                       |
 
 Audio guides fall back to on-device speech synthesis when no backend is
 configured, and cache narration text locally so downloaded guides keep working

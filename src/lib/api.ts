@@ -38,10 +38,7 @@ function filterMonasteries(filters: MonasteryFilters): Monastery[] {
     if (filters.district && m.district !== filters.district) return false;
     if (filters.sect && m.sect !== filters.sect) return false;
     if (filters.era && m.era !== filters.era) return false;
-    if (
-      q &&
-      !`${m.name} ${m.localName} ${m.district} ${m.summary}`.toLowerCase().includes(q)
-    )
+    if (q && !`${m.name} ${m.localName} ${m.district} ${m.summary}`.toLowerCase().includes(q))
       return false;
     return true;
   });
@@ -104,9 +101,8 @@ export function listArchives(q = "", kind?: string) {
   const qs = new URLSearchParams();
   if (q) qs.set("q", q);
   if (kind) qs.set("kind", kind);
-  return get<ArchiveResult[]>(
-    `/api/archives${qs.toString() ? `?${qs}` : ""}`,
-    () => localArchiveSearch(q, kind),
+  return get<ArchiveResult[]>(`/api/archives${qs.toString() ? `?${qs}` : ""}`, () =>
+    localArchiveSearch(q, kind),
   );
 }
 

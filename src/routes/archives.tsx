@@ -78,7 +78,9 @@ function ArchivesPage() {
           onClick={() => setKind("")}
           className={cn(
             "rounded-full border px-3.5 py-1.5 text-xs",
-            !kind ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground",
+            !kind
+              ? "border-primary bg-primary text-primary-foreground"
+              : "border-border text-muted-foreground",
           )}
         >
           All types
@@ -106,7 +108,10 @@ function ArchivesPage() {
 
       <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((item) => (
-          <article key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
+          <article
+            key={item.id}
+            className="overflow-hidden rounded-lg border border-border bg-card"
+          >
             <div className="aspect-4/3 overflow-hidden">
               <img
                 src={item.image}
@@ -130,7 +135,10 @@ function ArchivesPage() {
               </p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {item.tags.map((t) => (
-                  <span key={t} className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] text-secondary-foreground">
+                  <span
+                    key={t}
+                    className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] text-secondary-foreground"
+                  >
                     {t}
                   </span>
                 ))}

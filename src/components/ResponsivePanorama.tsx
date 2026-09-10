@@ -1,16 +1,6 @@
-import { useMemo } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import PanoramaViewer from "@/components/PanoramaViewer";
 import type { TourScene } from "@/data/monasteries";
-
-const desktopPhotoBySlug: Record<string, string> = {
-  dubdi: "/dubdi.jpeg",
-  enchey: "/enchey.jpeg",
-  pemayangtse: "/pemayangtse.jpeg",
-  phodong: "/phodong.jpeg",
-  rumtek: "/rumtek.jpeg",
-  tashiding: "/tashiding.jpeg",
-};
+import { getMonastery } from "@/data/monasteries";
 
 interface Props {
   slug: string;
@@ -29,32 +19,33 @@ export default function ResponsivePanorama({
   onSceneChange,
   className,
 }: Props) {
-  const isMobile = useIsMobile();
-  const activeScene = useMemo(
-    () => scenes.find((scene) => scene.id === activeSceneId) ?? scenes[0],
-    [activeSceneId, scenes],
-  );
-  const desktopPhoto = desktopPhotoBySlug[slug];
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined;
+  const monastery = getMonastery(slug);
 
-  if (!isMobile && desktopPhoto) {
+  // If a Google Maps API Key is provided and the monastery has a custom street view URL, use Google Maps Embed
+  if (apiKey && monastery?.streetViewUrl) {
+    const embedUrl = monastery.streetViewUrl.includes("panoid=")
+      ? `https://www.google.com/maps/embed/v1/streetview?key=${apiKey}&pano=${new URL(monastery.streetViewUrl).searchParams.get("panoid")}`
+      : `https://www.google.com/maps/embed/v1/streetview?key=${apiKey}&location=${monastery.lat},${monastery.lng}`;
+
     return (
       <div className={className}>
         <div className="relative h-full w-full overflow-hidden bg-black">
-          <img
-            src={desktopPhoto}
-            alt={`${monasteryName} — ${activeScene?.title}`}
-            className="h-full w-full object-contain"
-          />
-          <div className="absolute inset-x-0 bottom-0 px-4 pb-4">
-            <div className="inline-flex rounded-full bg-black/70 px-3 py-1 text-xs text-white">
-              {activeScene?.title}
-            </div>
-          </div>
+          <iframe
+            title={`${monasteryName} Street View`}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="eager"
+            src={embedUrl}
+          ></iframe>
         </div>
       </div>
     );
   }
 
+  // Otherwise, use the built-in 360° Pannellum viewer (works offline, no API key needed, zero errors)
   return (
     <PanoramaViewer
       scenes={scenes}

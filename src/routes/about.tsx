@@ -43,16 +43,14 @@ function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-14">
       <p className="text-eyebrow text-muted-foreground">The project</p>
-      <h1 className="mt-3 font-display text-4xl">
-        A unified record of Sikkim's monastic heritage
-      </h1>
+      <h1 className="mt-3 font-display text-4xl">A unified record of Sikkim's monastic heritage</h1>
       <p className="mt-6 leading-relaxed text-muted-foreground">
         Sikkim holds more than two hundred monasteries, many founded in the seventeenth and
-        eighteenth centuries. Individual efforts have preserved murals and digitised rare
-        documents, but the material has been scattered across institutions and largely
-        inaccessible to the public. Monastery360 brings it into one platform: immersive tours of
-        the buildings, a searchable archive of what they hold, a geospatial layer for planning
-        real visits, and a calendar of the rituals that keep the tradition living.
+        eighteenth centuries. Individual efforts have preserved murals and digitised rare documents,
+        but the material has been scattered across institutions and largely inaccessible to the
+        public. Monastery360 brings it into one platform: immersive tours of the buildings, a
+        searchable archive of what they hold, a geospatial layer for planning real visits, and a
+        calendar of the rituals that keep the tradition living.
       </p>
 
       <div className="rule-gold my-12" aria-hidden />
@@ -89,9 +87,9 @@ function AboutPage() {
           areas without signal.
         </li>
         <li className="border-l-2 border-gold/60 pl-4">
-          <strong className="text-foreground">Stakeholders</strong> — the Department of Higher
-          &amp; Technical Education, monastic institutions, local transport and homestay
-          networks, and travellers.
+          <strong className="text-foreground">Stakeholders</strong> — the Department of Higher &amp;
+          Technical Education, monastic institutions, local transport and homestay networks, and
+          travellers.
         </li>
       </ul>
     </div>

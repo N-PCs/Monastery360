@@ -9,8 +9,8 @@ export function SiteFooter() {
             Monastery<span className="text-accent">360</span>
           </p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            A digital heritage platform documenting over two hundred monasteries across
-            Sikkim through immersive tours, archives and living calendars.
+            A digital heritage platform documenting over two hundred monasteries across Sikkim
+            through immersive tours, archives and living calendars.
           </p>
         </div>
         <div>

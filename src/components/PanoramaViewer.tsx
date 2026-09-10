@@ -13,12 +13,7 @@ type PannellumApi = {
   viewer: (el: HTMLElement, config: Record<string, unknown>) => PannellumViewer;
 };
 
-export default function PanoramaViewer({
-  scenes,
-  activeSceneId,
-  onSceneChange,
-  className,
-}: Props) {
+export default function PanoramaViewer({ scenes, activeSceneId, onSceneChange, className }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const viewerRef = useRef<PannellumViewer | null>(null);
   const [error, setError] = useState<string | null>(null);

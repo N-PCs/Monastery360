@@ -57,8 +57,20 @@ function TourPage() {
       </div>
 
       <div className="relative flex-1">
-        <ClientOnly fallback={<div className="grid size-full place-items-center text-sm text-white/60">Preparing 360° view…</div>}>
-          <Suspense fallback={<div className="grid size-full place-items-center text-sm text-white/60">Loading…</div>}>
+        <ClientOnly
+          fallback={
+            <div className="grid size-full place-items-center text-sm text-white/60">
+              Preparing 360° view…
+            </div>
+          }
+        >
+          <Suspense
+            fallback={
+              <div className="grid size-full place-items-center text-sm text-white/60">
+                Loading…
+              </div>
+            }
+          >
             <ResponsivePanorama
               className="size-full"
               slug={monastery.slug}
@@ -71,22 +83,24 @@ function TourPage() {
         </ClientOnly>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto px-5 py-4">
-        {monastery.scenes.map((scene) => (
-          <button
-            key={scene.id}
-            type="button"
-            onClick={() => setSceneId(scene.id)}
-            className={
-              scene.id === activeScene?.id
-                ? "whitespace-nowrap rounded-full bg-white px-4 py-1.5 text-xs text-black"
-                : "whitespace-nowrap rounded-full border border-white/30 px-4 py-1.5 text-xs text-white/80"
-            }
-          >
-            {scene.title}
-          </button>
-        ))}
-      </div>
+      {monastery.scenes.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto px-5 py-4">
+          {monastery.scenes.map((scene) => (
+            <button
+              key={scene.id}
+              type="button"
+              onClick={() => setSceneId(scene.id)}
+              className={
+                scene.id === activeScene?.id
+                  ? "whitespace-nowrap rounded-full bg-white px-4 py-1.5 text-xs text-black"
+                  : "whitespace-nowrap rounded-full border border-white/30 px-4 py-1.5 text-xs text-white/80"
+              }
+            >
+              {scene.title}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

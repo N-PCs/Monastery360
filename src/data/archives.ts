@@ -123,9 +123,4 @@ export const archiveItems: ArchiveItem[] = [
   },
 ];
 
-export const archiveKinds: ArchiveKind[] = [
-  "Manuscript",
-  "Mural",
-  "Document",
-  "Ritual object",
-];
+export const archiveKinds: ArchiveKind[] = ["Manuscript", "Mural", "Document", "Ritual object"];

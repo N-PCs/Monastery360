@@ -7,17 +7,17 @@ Worker over HTTPS.
 
 ## Endpoints
 
-| Method | Path | Purpose |
-| --- | --- | --- |
-| GET | `/api/health` | Liveness probe |
-| GET | `/api/monasteries?q=&district=&sect=&era=` | Filtered directory |
-| GET | `/api/monasteries/:slug` | Full record incl. tour scenes + hotspots |
-| GET | `/api/map/points` | Lightweight geo payload for the map |
-| GET | `/api/archives?q=&kind=` | Archive search (vector, keyword fallback) |
-| GET | `/api/events?month=YYYY-MM` | Cultural calendar |
-| POST | `/api/bookings` | Event booking request |
-| POST | `/api/tts` | Narration audio, generated once and cached in R2 |
-| POST | `/api/admin/reindex` | Rebuild archive embeddings (Bearer `ADMIN_TOKEN`) |
+| Method | Path                                       | Purpose                                           |
+| ------ | ------------------------------------------ | ------------------------------------------------- |
+| GET    | `/api/health`                              | Liveness probe                                    |
+| GET    | `/api/monasteries?q=&district=&sect=&era=` | Filtered directory                                |
+| GET    | `/api/monasteries/:slug`                   | Full record incl. tour scenes + hotspots          |
+| GET    | `/api/map/points`                          | Lightweight geo payload for the map               |
+| GET    | `/api/archives?q=&kind=`                   | Archive search (vector, keyword fallback)         |
+| GET    | `/api/events?month=YYYY-MM`                | Cultural calendar                                 |
+| POST   | `/api/bookings`                            | Event booking request                             |
+| POST   | `/api/tts`                                 | Narration audio, generated once and cached in R2  |
+| POST   | `/api/admin/reindex`                       | Rebuild archive embeddings (Bearer `ADMIN_TOKEN`) |
 
 ## First deploy
 

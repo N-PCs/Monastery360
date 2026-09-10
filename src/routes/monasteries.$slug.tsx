@@ -19,7 +19,10 @@ export const Route = createFileRoute("/monasteries/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Monastery not found — Monastery360" }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: "Monastery not found — Monastery360" },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
     const title = `${loaderData.name} — Monastery360 Sikkim`;
@@ -45,8 +48,7 @@ function MonasteryDetail() {
   const [sceneId, setSceneId] = useState(monastery?.scenes[0]?.id ?? "");
 
   if (!monastery) return null;
-  const activeScene =
-    monastery.scenes.find((s) => s.id === sceneId) ?? monastery.scenes[0];
+  const activeScene = monastery.scenes.find((s) => s.id === sceneId) ?? monastery.scenes[0];
 
   return (
     <div>
@@ -86,10 +88,18 @@ function MonasteryDetail() {
             <h2 className="mt-2 font-display text-2xl">{activeScene?.title}</h2>
             <div className="mt-4 aspect-video overflow-hidden rounded-lg border border-border">
               <ClientOnly
-                fallback={<div className="grid size-full place-items-center bg-muted text-sm text-muted-foreground">Preparing 360° view…</div>}
+                fallback={
+                  <div className="grid size-full place-items-center bg-muted text-sm text-muted-foreground">
+                    Preparing 360° view…
+                  </div>
+                }
               >
                 <Suspense
-                  fallback={<div className="grid size-full place-items-center bg-muted text-sm text-muted-foreground">Loading…</div>}
+                  fallback={
+                    <div className="grid size-full place-items-center bg-muted text-sm text-muted-foreground">
+                      Loading…
+                    </div>
+                  }
                 >
                   <ResponsivePanorama
                     className="size-full"
@@ -132,9 +142,7 @@ function MonasteryDetail() {
             </div>
             <div>
               <h2 className="font-display text-2xl">Architecture</h2>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                {monastery.architecture}
-              </p>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{monastery.architecture}</p>
             </div>
           </section>
         </div>

@@ -31,6 +31,7 @@ export interface Monastery {
   visiting: string;
   nearby: string[];
   beaconId: string;
+  streetViewUrl?: string;
   scenes: TourScene[];
 }
 
@@ -57,6 +58,8 @@ export const monasteries: Monastery[] = [
       "Open daily 06:00-18:00. Photography is permitted in the courtyard but not inside the reliquary hall. Twenty-four kilometres from Gangtok by road, roughly an hour of switchbacks.",
     nearby: ["Old Rumtek Monastery", "Lingdum Monastery", "Ranka village"],
     beaconId: "BCN-RTK-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgID2gYWcogE&cbp=11,325.28,0,14.48,0&output=svembed",
     scenes: [
       {
         id: "courtyard",
@@ -64,18 +67,7 @@ export const monasteries: Monastery[] = [
         image: panoRumtek,
         narration:
           "You are standing in the great courtyard of Rumtek. Each winter this stone floor becomes the stage for the cham, the masked dance that enacts the victory of wisdom over ignorance. The prayer wheels along the colonnade are turned clockwise by every visitor who passes.",
-        hotspots: [
-          { pitch: -4, yaw: 110, label: "Enter the prayer hall", sceneId: "hall" },
-          { pitch: 6, yaw: -60, label: "Lineage murals" },
-        ],
-      },
-      {
-        id: "hall",
-        title: "Main prayer hall",
-        image: panoPemayangtse,
-        narration:
-          "Inside the prayer hall, rows of low benches face a gilded Shakyamuni Buddha. Butter lamps burn continuously before the altar, and the ceiling above you carries mandalas repainted by hand every generation.",
-        hotspots: [{ pitch: -6, yaw: -140, label: "Back to the courtyard", sceneId: "courtyard" }],
+        hotspots: [{ pitch: 6, yaw: -60, label: "Lineage murals" }],
       },
     ],
   },
@@ -101,6 +93,8 @@ export const monasteries: Monastery[] = [
       "Open 07:00-17:00. Located two kilometres from Pelling; the ruins of Rabdentse, the second capital of Sikkim, are a short forest walk away.",
     nearby: ["Rabdentse ruins", "Pelling Skywalk", "Khecheopalri Lake"],
     beaconId: "BCN-PMY-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgICE7IqDxQE&cbp=11,354.05,0,3.49,0&output=svembed",
     scenes: [
       {
         id: "hall",
@@ -134,6 +128,8 @@ export const monasteries: Monastery[] = [
       "Open dawn to dusk. Reached by a forty-minute uphill walk from Tashiding town; wear proper shoes in monsoon.",
     nearby: ["Hungri Monastery", "Rangeet river confluence", "Yuksom"],
     beaconId: "BCN-TSD-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgICEzsO3Ig&cbp=11,309.77,0,2.99,0&output=svembed",
     scenes: [
       {
         id: "grounds",
@@ -167,6 +163,8 @@ export const monasteries: Monastery[] = [
       "Open 06:00-16:00, three kilometres from central Gangtok and walkable from the ropeway.",
     nearby: ["Ganesh Tok", "Gangtok ropeway", "Do Drul Chorten"],
     beaconId: "BCN-ENC-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgICJsMq39gE&cbp=11,45.8,0,11.65,0&output=svembed",
     scenes: [
       {
         id: "grounds",
@@ -200,6 +198,8 @@ export const monasteries: Monastery[] = [
       "Open daylight hours. A one-hour uphill trek from Yuksom through cardamom fields and forest.",
     nearby: ["Yuksom coronation throne", "Kathok Lake", "Norbugang Chorten"],
     beaconId: "BCN-DBD-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgICE_5bCfQ&cbp=11,45.93,0,0.57,0&output=svembed",
     scenes: [
       {
         id: "grounds",
@@ -233,6 +233,8 @@ export const monasteries: Monastery[] = [
       "Open 07:00-17:00, twenty-eight kilometres north of Gangtok on the North Sikkim highway.",
     nearby: ["Labrang Monastery", "Seven Sisters Waterfall", "Kabi Lungchok"],
     beaconId: "BCN-PHD-01",
+    streetViewUrl:
+      "https://maps.google.com/maps?layer=c&panoid=CIHM0ogKEICAgIDE-I2AmwE&cbp=11,25.3,0,1.16,0&output=svembed",
     scenes: [
       {
         id: "hall",
@@ -250,11 +252,6 @@ export function getMonastery(slug: string): Monastery | undefined {
   return monasteries.find((m) => m.slug === slug);
 }
 
-export const districts: District[] = [
-  "East Sikkim",
-  "West Sikkim",
-  "North Sikkim",
-  "South Sikkim",
-];
+export const districts: District[] = ["East Sikkim", "West Sikkim", "North Sikkim", "South Sikkim"];
 
 export const sects: Sect[] = ["Nyingma", "Karma Kagyu", "Kagyu", "Gelug"];

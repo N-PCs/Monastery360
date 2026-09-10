@@ -81,8 +81,8 @@ function Home() {
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
             Monastery360 documents the gompas of Sikkim in immersive 360°, alongside the
-            manuscripts, murals and rituals that keep them alive — for travellers,
-            researchers and the communities who tend them.
+            manuscripts, murals and rituals that keep them alive — for travellers, researchers and
+            the communities who tend them.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button asChild size="lg">
